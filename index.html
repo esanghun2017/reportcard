@@ -28,12 +28,13 @@ h2{font-size:20px;font-weight:700;margin:0 0 4px;letter-spacing:-.3px}
 .sub{color:var(--mut);font-size:13px;margin:0 0 12px;line-height:1.5}
 .src{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:6px;vertical-align:middle}
 .src.std{background:var(--acc)}.src.mine{background:var(--warn)}
-.tw{overflow-x:auto;margin:0 -16px;padding:0 16px}
-table{border-collapse:collapse;width:100%;font-size:15px;font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto;margin:0 -16px;padding:0}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:15px;font-variant-numeric:tabular-nums}
 th{font-size:12px;color:var(--mut);font-weight:600;text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--soft)}
 td{padding:9px 8px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:middle}
 .n{text-align:right}
-.tw th:first-child,.tw td:first-child{position:sticky;left:0;z-index:1;background:var(--card)}
+.tw th:first-child,.tw td:first-child{position:sticky;left:0;z-index:2;background:var(--card);padding-left:16px;box-shadow:1px 0 0 var(--line)}
+.tw th:last-child,.tw td:last-child{padding-right:16px}
 .tw th:first-child{background:var(--soft)}
 td.tk{font-weight:600;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
 .nm{display:block;font-size:12px;color:var(--mut);font-weight:400;text-decoration:none}
@@ -127,7 +128,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:18px;line-he
   </details>
 </section>
 
-<footer>종목 성적표 v1.1 · 실적 자료는 분기마다(2·5·8·11월 20일) 갱신돼요<br>참고용 정보이며 투자 조언이 아니에요</footer>
+<footer>종목 성적표 v1.2 · 실적 자료는 분기마다(2·5·8·11월 20일) 갱신돼요<br>참고용 정보이며 투자 조언이 아니에요</footer>
 </div>
 
 <script>
