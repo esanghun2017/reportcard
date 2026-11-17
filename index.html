@@ -127,7 +127,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:18px;line-he
   </details>
 </section>
 
-<footer>종목 성적표 v1.0 · 실적 자료는 분기마다(2·5·8·11월 20일) 갱신돼요<br>참고용 정보이며 투자 조언이 아니에요</footer>
+<footer>종목 성적표 v1.1 · 실적 자료는 분기마다(2·5·8·11월 20일) 갱신돼요<br>참고용 정보이며 투자 조언이 아니에요</footer>
 </div>
 
 <script>
@@ -187,7 +187,7 @@ function render(){
   $('lead').innerHTML=`지금 가격으로 보면, 목표 비중보다 모자라면서 적정가보다 싼 종목은 ${top.length?top.map(r=>`<b>${r.ticker}</b> (<span class="ok">${pct(r.gap)}</span>)`).join(', ')+'예요':'지금은 없어요'}. 다섯 관점 중 초록불이 가장 많은 종목은 ${lead.map(r=>'<b>'+r.ticker+'</b>').join(', ')} (각 ${mx}개)예요.`;
   $('tNext').innerHTML=L.filter(r=>r.rank<=4).sort((a,b)=>a.rank-b.rank||b.gap-a.gap).map(r=>`<tr>${tkCell(r)}<td><span class="pill ${r.rank===1?'ok':r.rank===3?'bad':''}">${r.pr}</span></td><td>${r.status==='모자람'?'목표보다 모자람':'목표만큼 있음'}</td><td class="n ${gc(r.gap)}">${pct(r.gap)}</td></tr>`).join('');
   $('tSum').innerHTML=[...L].sort((a,b)=>b.greens-a.greens||b.gap-a.gap).map(r=>{const cls=r.greens>=3?'ok':r.greens===0?'bad':'';const dots=Array.from({length:5},(_,i)=>`<span class="dot${i<r.greens?' on':''}"></span>`).join('');
-    const h=r.health;return `<tr>${tkCell(r,1)}<td class="n ${cls}">${dots} ${r.greens}</td><td>${esc(r.list)||'—'}</td><td class="n ${gc(r.gap)}">${pct(r.gap)}</td><td class="n ${h==null?'':h>=80?'ok':h<50?'bad':''}">${h==null?'해당 없음':h}</td></tr>`;}).join('');
+    const h=r.health;return `<tr>${tkCell(r)}<td class="n ${cls}">${dots} ${r.greens}</td><td>${esc(r.list)||'—'}</td><td class="n ${gc(r.gap)}">${pct(r.gap)}</td><td class="n ${h==null?'':h>=80?'ok':h<50?'bad':''}">${h==null?'해당 없음':h}</td></tr>`;}).join('');
   $('tFair').innerHTML=[...L].sort((a,b)=>b.gap-a.gap).map(r=>`<tr>${tkCell(r)}<td class="n">${money(r.cur,r.price)}</td><td class="n ${gc(r.gap)}">${money0(r.cur,r.mid)}</td><td class="n">${money0(r.cur,r.lo)}~${f2(r.hi,0)}</td><td class="n">${money(r.cur,r.tgt)}</td></tr>`).join('');
   $('tLens').innerHTML=S.rows.map(r=>`<tr>${tkCell(r)}<td class="n ${r.lynch_ratio>=1.5?'ok':''}">${f2(r.lynch_ratio)}</td><td class="n ${r.piotroski>=7?'ok':''}">${r.piotroski}</td><td class="n ${r.neff_ratio>=1.5&&r.neff_conditions===3?'ok':''}">${f2(r.neff_ratio)}</td><td class="n">${r.neff_conditions}</td><td class="n ${r.earnings_yield>4.88?'ok':''}">${f2(r.earnings_yield)}%</td></tr>`).join('');
   $('cGap').innerHTML=hbars([...L].sort((a,b)=>b.gap-a.gap).map(r=>({l:r.ticker,v:r.gap,c:r.gap>=15?'var(--ok)':r.gap<=-15?'var(--bad)':'var(--bar)'})),{min:-70,max:80,fmt:pct,left:56});
