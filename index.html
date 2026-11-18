@@ -44,9 +44,8 @@ td.tk{font-weight:600;cursor:pointer;text-decoration:underline dotted;text-under
 .pill.ok{border-color:var(--ok);color:var(--ok)}.pill.bad{border-color:var(--bad);color:var(--bad)}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;border:1.5px solid currentColor;margin-left:3px;vertical-align:middle}
 .dot.on{background:currentColor}
-svg text{font-size:12px;fill:var(--mut)}
+svg text{font-size:15px;fill:var(--mut)}
 svg .lbl{fill:var(--fg)}
-svg.bc text{font-size:10px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:12px}
 .box{border:1px solid var(--line);border-radius:14px;padding:12px 14px}
 .box h3{font-size:16px;font-weight:700;margin:0 0 6px;display:flex;justify-content:space-between}
@@ -205,19 +204,19 @@ function bp(x,y,w,h,d){const r=Math.max(0,Math.min(1.5,w/2,h/2));
   if(d==='left')return `M${x+w},${y}H${x+r}Q${x},${y} ${x},${y+r}V${y+h-r}Q${x},${y+h} ${x+r},${y+h}H${x+w}Z`;
   return `M${x},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h-r}Q${x+w},${y+h} ${x+w-r},${y+h}H${x}Z`;}
 function hbars(items,o){
-  const W=360,rh=24,l=o.left||90,r=50,H=items.length*rh+6,min=o.min||0,max=o.max!=null?o.max:Math.max(...items.map(d=>d.v));
+  const W=360,rh=26,l=Math.max(...items.map(d=>[...String(d.l)].reduce((t,c)=>t+(c.charCodeAt(0)>0x1100?15:8.5),0)))+10,r=50,H=items.length*rh+6,min=o.min||0,max=o.max!=null?o.max:Math.max(...items.map(d=>d.v));
   const x=v=>l+(Math.max(min,Math.min(max,v))-min)/(max-min)*(W-l-r),z=x(Math.max(min,0));
   let s=`<svg class="bc" viewBox="0 0 ${W} ${H}" width="100%" role="img">`;
   if(min<0)s+=`<line x1="${z}" x2="${z}" y1="0" y2="${H}" stroke="var(--line)"/>`;
   if(o.ref!=null)s+=`<line x1="${x(o.ref)}" x2="${x(o.ref)}" y1="0" y2="${H}" stroke="var(--mut)" stroke-dasharray="3 3"/>`;
   items.forEach((d,i)=>{const y=3+i*rh,xv=x(d.v),a=Math.min(z,xv),w=Math.max(1,Math.abs(xv-z));
-    s+=`<text class="lbl" x="0" y="${y+rh/2}" dy=".35em">${esc(d.l)}</text><path d="${bp(a,y+5,w,rh-10,d.v<0?'left':'right')}" fill="${d.c||'var(--bar)'}"/>`;
+    s+=`<text class="lbl" x="0" y="${y+rh/2}" dy=".35em">${esc(d.l)}</text><path d="${bp(a,y+6,w,14,d.v<0?'left':'right')}" fill="${d.c||'var(--bar)'}"/>`;
     s+=`<text x="${d.v>=0?xv+4:xv-4}" y="${y+rh/2}" dy=".35em" text-anchor="${d.v>=0?'start':'end'}">${esc(o.fmt(d.v))}</text>`;});
   return s+'</svg>';
 }
 function cols(rows,o){
   const per=[...new Set(rows.map(r=>r[2]))],names=[...new Set(rows.map(r=>r[1]))];
-  const W=340,H=170,b=20,t=16,mx=Math.max(...rows.map(r=>r[3]),0)*1.1||1,mn=Math.min(0,...rows.map(r=>r[3]));
+  const W=340,H=180,b=24,t=20,mx=Math.max(...rows.map(r=>r[3]),0)*1.1||1,mn=Math.min(0,...rows.map(r=>r[3]));
   const bw=(W-8)/per.length,sw=16,gw=sw*names.length,y=v=>t+(mx-v)/(mx-mn)*(H-b-t);
   let s=(names.length>1?`<div class="lg">${names.map((n,i)=>`<span><i style="background:${o.c[i]}"></i>${esc(n)}</span>`).join('')}</div>`:'')+`<svg class="bc" viewBox="0 0 ${W} ${H}" width="100%" role="img"><line x1="0" x2="${W}" y1="${y(0)}" y2="${y(0)}" stroke="var(--line)"/>`;
   rows.forEach(r=>{const pi=per.indexOf(r[2]),ni=names.indexOf(r[1]),x0=4+pi*bw+(bw-gw)/2+ni*sw,yv=y(r[3]),y0=y(0);
@@ -258,9 +257,9 @@ function kv(F,keys){const rows=keys.filter(k=>F.has(k)).map(k=>`<dt>${esc(F.get(
 function ret1y(k){const p=S.hist[k]||[];return p.length>1?Math.round((p[p.length-1].v/p[0].v-1)*100):null;}
 function tgtRange(lo,hi,avg,price,cur){const mn=Math.min(lo,price||lo)*0.95,mx=Math.max(hi,price||hi)*1.05,W=320,x=v=>10+(v-mn)/(mx-mn)*(W-20),m=v=>cur+f2(v,0);
   return `<svg viewBox="0 0 ${W} 58" width="100%" role="img" aria-label="애널리스트 목표가 범위와 지금 가격"><line x1="${x(lo)}" x2="${x(hi)}" y1="22" y2="22" stroke="var(--acc)" stroke-width="6" stroke-linecap="round" opacity=".35"/>`+
-  (avg!=null?`<line x1="${x(avg)}" x2="${x(avg)}" y1="14" y2="30" stroke="var(--acc)" stroke-width="2"/><text x="${x(avg)}" y="9" text-anchor="middle" font-size="10" fill="currentColor">평균 ${m(avg)}</text>`:'')+
+  (avg!=null?`<line x1="${x(avg)}" x2="${x(avg)}" y1="14" y2="30" stroke="var(--acc)" stroke-width="2"/><text x="${x(avg)}" y="9" text-anchor="middle" fill="currentColor">평균 ${m(avg)}</text>`:'')+
   (price?`<circle cx="${x(price)}" cy="22" r="6" fill="currentColor"/>`:'')+
-  `<text x="${x(lo)}" y="50" font-size="10" fill="currentColor">최저 ${m(lo)}</text><text x="${x(hi)}" y="50" text-anchor="end" font-size="10" fill="currentColor">최고 ${m(hi)}</text></svg>`;}
+  `<text x="${x(lo)}" y="50" fill="currentColor">최저 ${m(lo)}</text><text x="${x(hi)}" y="50" text-anchor="end" fill="currentColor">최고 ${m(hi)}</text></svg>`;}
 function pnlTable(rows,cur){const R=(rows.find(r=>r[2]==='매출')||[])[3];if(!R)return '';
   return '<table class="pnl">'+rows.map(r=>{const b=['매출','영업이익','순이익'].includes(r[2])?' style="font-weight:600"':'';return `<tr${b}><td>${esc(r[2])}</td><td class="n">${r[3]<0?'−':''}${cur}${f2(Math.abs(r[3]),1)}B</td><td class="n ${r[3]<0?'':'ok'}">${f2(Math.abs(r[3])/R*100,0)}%</td></tr>`;}).join('')+'</table>';}
 function renderReport(){
