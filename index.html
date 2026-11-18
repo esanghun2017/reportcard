@@ -255,11 +255,11 @@ function fval(F,k){const r=F.get(k);if(!r)return null;const[,label,v,txt,u]=r;if
 function kv(F,keys){const rows=keys.filter(k=>F.has(k)).map(k=>`<dt>${esc(F.get(k)[1])}</dt><dd>${esc(fval(F,k))}</dd>`).join('');return rows?`<dl class="kv">${rows}</dl>`:'';}
 
 function ret1y(k){const p=S.hist[k]||[];return p.length>1?Math.round((p[p.length-1].v/p[0].v-1)*100):null;}
-function tgtRange(lo,hi,avg,price,cur){const mn=Math.min(lo,price||lo)*0.95,mx=Math.max(hi,price||hi)*1.05,W=320,x=v=>10+(v-mn)/(mx-mn)*(W-20),m=v=>cur+f2(v,0);
-  return `<svg viewBox="0 0 ${W} 58" width="100%" role="img" aria-label="애널리스트 목표가 범위와 지금 가격"><line x1="${x(lo)}" x2="${x(hi)}" y1="22" y2="22" stroke="var(--acc)" stroke-width="6" stroke-linecap="round" opacity=".35"/>`+
-  (avg!=null?`<line x1="${x(avg)}" x2="${x(avg)}" y1="14" y2="30" stroke="var(--acc)" stroke-width="2"/><text x="${x(avg)}" y="9" text-anchor="middle" fill="currentColor">평균 ${m(avg)}</text>`:'')+
-  (price?`<circle cx="${x(price)}" cy="22" r="6" fill="currentColor"/>`:'')+
-  `<text x="${x(lo)}" y="50" fill="currentColor">최저 ${m(lo)}</text><text x="${x(hi)}" y="50" text-anchor="end" fill="currentColor">최고 ${m(hi)}</text></svg>`;}
+function tgtRange(lo,hi,avg,price,cur){const mn=Math.min(lo,price||lo)*0.95,mx=Math.max(hi,price||hi)*1.05,W=320,x=v=>10+(v-mn)/(mx-mn)*(W-20),m=v=>cur+f2(v,0),cl=v=>Math.min(W-60,Math.max(60,v));
+  return `<svg viewBox="0 0 ${W} 82" width="100%" role="img" aria-label="애널리스트 목표가 범위와 지금 가격"><line x1="${x(lo)}" x2="${x(hi)}" y1="36" y2="36" stroke="var(--acc)" stroke-width="6" stroke-linecap="round" opacity=".35"/>`+
+  (avg!=null?`<line x1="${x(avg)}" x2="${x(avg)}" y1="27" y2="45" stroke="var(--acc)" stroke-width="2"/><text x="${cl(x(avg))}" y="17" text-anchor="middle" fill="currentColor">평균 ${m(avg)}</text>`:'')+
+  (price?`<circle cx="${x(price)}" cy="36" r="6" fill="currentColor"/>`:'')+
+  `<text x="${Math.min(x(lo),W/2-6)}" y="70" fill="currentColor">최저 ${m(lo)}</text><text x="${Math.max(x(hi),W/2+6)}" y="70" text-anchor="end" fill="currentColor">최고 ${m(hi)}</text></svg>`;}
 function pnlTable(rows,cur){const R=(rows.find(r=>r[2]==='매출')||[])[3];if(!R)return '';
   return '<table class="pnl">'+rows.map(r=>{const b=['매출','영업이익','순이익'].includes(r[2])?' style="font-weight:600"':'';return `<tr${b}><td>${esc(r[2])}</td><td class="n">${r[3]<0?'−':''}${cur}${f2(Math.abs(r[3]),1)}B</td><td class="n ${r[3]<0?'':'ok'}">${f2(Math.abs(r[3])/R*100,0)}%</td></tr>`;}).join('')+'</table>';}
 function renderReport(){
