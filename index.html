@@ -204,7 +204,7 @@ function bp(x,y,w,h,d){const r=Math.max(0,Math.min(1.5,w/2,h/2));
   if(d==='left')return `M${x+w},${y}H${x+r}Q${x},${y} ${x},${y+r}V${y+h-r}Q${x},${y+h} ${x+r},${y+h}H${x+w}Z`;
   return `M${x},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h-r}Q${x+w},${y+h} ${x+w-r},${y+h}H${x}Z`;}
 function hbars(items,o){
-  const W=360,rh=26,l=Math.max(...items.map(d=>[...String(d.l)].reduce((t,c)=>t+(c.charCodeAt(0)>0x1100?15:8.5),0)))+10,r=50,H=items.length*rh+6,min=o.min||0,max=o.max!=null?o.max:Math.max(...items.map(d=>d.v));
+  const W=360,rh=26,tw=x=>[...String(x)].reduce((t,c)=>t+(c.charCodeAt(0)>0x1100?15:8.5),0),l=Math.max(...items.map(d=>tw(d.l)))+10+(Math.min(...items.map(d=>d.v))<0?Math.max(...items.filter(d=>d.v<0).map(d=>tw(o.fmt(d.v))))+8:0),r=50,H=items.length*rh+6,min=o.min||0,max=o.max!=null?o.max:Math.max(...items.map(d=>d.v));
   const x=v=>l+(Math.max(min,Math.min(max,v))-min)/(max-min)*(W-l-r),z=x(Math.max(min,0));
   let s=`<svg class="bc" viewBox="0 0 ${W} ${H}" width="100%" role="img">`;
   if(min<0)s+=`<line x1="${z}" x2="${z}" y1="0" y2="${H}" stroke="var(--line)"/>`;
