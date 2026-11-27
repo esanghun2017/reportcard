@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="종목 성적표">
+<meta name="theme-color" content="#1D9E75">
+<title>종목 성적표</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<style>
+:root{--bg:#F2F2F7;--card:#FFFFFF;--fg:#1C1C1E;--mut:#6C6C70;--line:#E5E5EA;--ok:#1D9E75;--bad:#D85A30;--warn:#C27A12;--acc:#2F6FDE;--grid:#E5E5EA;--bar:#C7C7CC;--soft:#F7F7FA}
+@media (prefers-color-scheme:dark){:root{--bg:#000;--card:#1C1C1E;--fg:#F2F2F7;--mut:#98989F;--line:#2C2C2E;--ok:#3CC79A;--bad:#FF7A50;--warn:#F2B04A;--acc:#5B95F5;--grid:#2C2C2E;--bar:#48484A;--soft:#232326}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:860px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 16px) 14px calc(env(safe-area-inset-bottom) + 32px)}
+header h1{font-size:30px;font-weight:700;margin:4px 0 2px;letter-spacing:-.5px}
+.upd{color:var(--mut);font-size:13px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:4px 12px;font:inherit;font-size:13px;cursor:pointer}
+.lead{background:var(--card);border-radius:16px;padding:14px 16px;margin:14px 0;font-size:16px;line-height:1.6}
+.toc{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}
+.toc a{flex:none;font-size:13px;padding:5px 12px;border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none;border:1px solid var(--line)}
+section{background:var(--card);border-radius:16px;padding:16px;margin:14px 0;scroll-margin-top:10px}
+h2{font-size:20px;font-weight:700;margin:0 0 4px;letter-spacing:-.3px}
+.sub{color:var(--mut);font-size:13px;margin:0 0 12px;line-height:1.5}
+.src{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:6px;vertical-align:middle}
+.src.std{background:var(--acc)}.src.mine{background:var(--warn)}
+.tw{overflow-x:auto;margin:0 -16px;padding:0}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:15px;font-variant-numeric:tabular-nums}
+th{font-size:12px;color:var(--mut);font-weight:600;text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--soft)}
+td{padding:9px 8px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:middle}
+.n{text-align:right}
+.pnl{font-size:14px}.pnl td{padding:6px 4px;white-space:nowrap}.pnl td:first-child{white-space:normal;padding-left:0}.pnl td:last-child{padding-right:0;width:3.5em}
+.tw th:first-child,.tw td:first-child{position:sticky;left:0;z-index:2;background:var(--card);padding-left:16px;box-shadow:1px 0 0 var(--line)}
+.tw th:last-child,.tw td:last-child{padding-right:16px}
+.tw th:first-child{background:var(--soft)}
+td.tk{font-weight:600;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+.nm{display:block;font-size:12px;color:var(--mut);font-weight:400;text-decoration:none}
+.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;border:1px solid var(--line);color:var(--mut)}
+.pill.ok{border-color:var(--ok);color:var(--ok)}.pill.bad{border-color:var(--bad);color:var(--bad)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;border:1.5px solid currentColor;margin-left:3px;vertical-align:middle}
+.dot.on{background:currentColor}
+svg text{font-size:15px;fill:var(--mut)}
+svg .lbl{fill:var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:12px}
+.box{border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.box h3{font-size:16px;font-weight:700;margin:0 0 6px;display:flex;justify-content:space-between}
+.box h4{font-size:12px;color:var(--mut);font-weight:600;margin:12px 0 4px}
+dl.kv{display:grid;grid-template-columns:auto auto;gap:4px 14px;margin:0;font-size:15px}
+dl.kv dt{color:var(--mut)}dl.kv dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+ul.ck{list-style:none;padding:0;margin:0;font-size:15px}
+ul.ck li{display:grid;grid-template-columns:20px 1fr;gap:4px;padding:6px 0;border-bottom:1px solid var(--line)}
+ul.ck li:last-child{border-bottom:0}
+ul.ck .d{display:block;font-size:12px;color:var(--mut)}
+.note{font-size:12px;color:var(--mut);margin:6px 0 0;line-height:1.5}
+.rhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+select{font:inherit;font-size:16px;padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+.live{font-size:15px;font-variant-numeric:tabular-nums}
+.lg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--mut);margin:4px 0}
+.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+details summary{cursor:pointer;font-weight:600}
+details h3{font-size:15px;margin:12px 0 2px}details p{margin:0;color:var(--mut);font-size:14px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:18px;line-height:1.7}
+.err{color:var(--bad);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>종목 성적표</h1>
+  <div class="upd"><span id="upd">불러오는 중…</span><button class="btn" id="reload">새로고침</button></div>
+</header>
+<div class="lead" id="lead">—</div>
+<nav class="toc"><a href="#next">매수 우선순위</a><a href="#summary">종합 점수표</a><a href="#quant">퀀트 점수</a><a href="#fair">적정가</a><a href="#health">재무 건전성</a><a href="#risk">리스크</a><a href="#report">종목 리포트</a><a href="#lenses">세부 지표</a><a href="#method">계산 방법</a></nav>
+
+<section id="next">
+  <h2>다음 매수 우선순위<span class="src mine"></span></h2>
+  <p class="sub">핵심 14종목. 목표 비중보다 모자라면서 적정가 괴리가 +15% 이상이면 1순위, ±15% 안이면 계획대로, −15% 아래면 서두르지 않기예요. 파는 신호는 아니에요.</p>
+  <div class="tw"><table><thead><tr><th>종목</th><th>판단</th><th>목표 대비</th><th class="n">적정가 괴리</th></tr></thead><tbody id="tNext"></tbody></table></div>
+</section>
+
+<section id="summary">
+  <h2>종합 점수표<span class="src std"></span><span class="src mine"></span></h2>
+  <p class="sub">다섯 관점(성장 대비 가격, 저PER·배당, 국채 대비 수익, 재무 건전성, 적정가)에서 기준을 넘으면 초록불 하나. 적정가는 지금 가격으로 다시 매겨요.</p>
+  <div class="tw"><table><thead><tr><th>종목</th><th class="n">초록불 (5)</th><th>켜진 관점</th><th class="n">적정가 괴리</th><th class="n">건전성</th></tr></thead><tbody id="tSum"></tbody></table></div>
+</section>
+
+<section id="quant">
+  <h2>퀀트 점수 (100점)<span class="src std"></span></h2>
+  <p class="sub">보유 종목끼리 비교한 순위 점수예요. 가치(이익수익률), 우량(재무 건전성·피오트로스키), 추세(최근 12개월, 마지막 1개월 제외), 안정(낮은 변동성)을 각각 0~100으로 매겨 평균해요. 60점 이상 초록, 40점 미만 빨강.</p>
+  <div id="cQuant"></div>
+  <div class="tw" style="margin-top:12px"><table><thead><tr><th>종목</th><th class="n">총점</th><th class="n">가치</th><th class="n">우량</th><th class="n">추세</th><th class="n">안정</th></tr></thead><tbody id="tQuant"></tbody></table></div>
+  <p class="note">쓰는 법: 분기 매수 때 '목표보다 모자란' 종목이 여럿이면 퀀트 점수가 높은 쪽부터 사요. 점수만 보고 사고팔지는 않아요. 백테스트(2008~2026, 분기마다 같은 돈 매수)에서 어떤 규칙도 늘 이기지는 못했고, 차이는 종목 선택만큼 크지 않았어요.</p>
+</section>
+
+<section id="fair">
+  <h2>적정가와 지금 가격<span class="src std"></span><span class="src mine"></span></h2>
+  <p class="sub">린치·그레이엄 적정가와 애널리스트 목표가의 가운데 값. 오른쪽(초록)은 싼 종목, 왼쪽(빨강)은 비싼 종목이에요.</p>
+  <div id="cGap"></div>
+  <div class="tw" style="margin-top:12px"><table><thead><tr><th>종목</th><th class="n">지금</th><th class="n">적정가</th><th class="n">범위</th><th class="n">목표가</th></tr></thead><tbody id="tFair"></tbody></table></div>
+</section>
+
+<section id="health">
+  <h2>재무 건전성 (100점)<span class="src std"></span><span class="src mine"></span></h2>
+  <p class="sub">알트만 Z 25, 부채 20, 이자보상 15, 유동비율 10, 피오트로스키 15, ROIC 15점. 80점 이상이 초록. 은행은 해당 없음.</p>
+  <div id="cHealth"></div>
+</section>
+
+<section id="risk">
+  <h2>리스크 (최근 52주)<span class="src std"></span><span class="src mine"></span></h2>
+  <p class="sub">주간 종가로 계산한 흔들림의 크기예요. 연 변동성 20% 미만은 초록, 35% 이상은 빨강. 베타는 S&P 500이 10% 움직일 때 몇 % 움직이는지(÷10)예요.</p>
+  <div id="cRisk"></div>
+  <div class="tw" style="margin-top:12px"><table><thead><tr><th>종목</th><th class="n">연 변동성</th><th class="n">베타</th><th class="n">최대낙폭</th><th class="n">고점 대비</th></tr></thead><tbody id="tRisk"></tbody></table></div>
+  <p class="note">최대낙폭은 52주 안에서 고점부터 가장 크게 빠진 폭, 고점 대비는 지금 52주 고점보다 얼마나 내려와 있는지예요. 지난 1년에 큰 약세장이 없어서 폭락장의 위험은 실제보다 작게 보일 수 있어요.</p>
+</section>
+
+<section id="report">
+  <h2>종목 리포트<span class="src std"></span><span class="src mine"></span></h2>
+  <p class="sub">다섯 면(가치, 미래 성장, 과거 실적, 재무 건전성, 배당)을 6개씩 체크해요. 위 표에서 종목 이름을 누르면 여기로 와요.</p>
+  <div id="rep"></div>
+</section>
+
+<section id="lenses">
+  <h2>대가별 세부 지표<span class="src std"></span></h2>
+  <p class="sub">린치 비율 1.5 이상 초록. 네프는 3조건 모두 통과하고 1.5 이상. 버핏은 이익수익률이 미 10년물(4.88%)보다 높으면 초록.</p>
+  <div class="tw"><table><thead><tr><th>종목</th><th class="n">린치</th><th class="n">F (9)</th><th class="n">네프</th><th class="n">조건 (3)</th><th class="n">이익수익률</th></tr></thead><tbody id="tLens"></tbody></table></div>
+</section>
+
+<section id="method">
+  <details>
+    <summary>계산 공식과 기준</summary>
+    <p style="margin-top:8px">제목 옆 색 표시: <span class="src std" style="margin:0 2px"></span> 표준 공식 · <span class="src mine" style="margin:0 2px"></span> 직접 정한 기준</p>
+    <h3>성장 대비 가격 (피터 린치)</h3><p>(3년 성장 전망, 최대 25% + 배당률) ÷ 선행 P/E. 1.5 이상이면 초록.</p>
+    <h3>저PER·배당 (존 네프)</h3><p>(성장 + 배당) ÷ 선행 P/E. 시장보다 낮은 P/E, 성장 7~20%, 배당 1.2% 이상을 모두 통과하고 1.5 이상이면 초록.</p>
+    <h3>국채 대비 수익 (워런 버핏)</h3><p>이익수익률(1 ÷ P/E)이 미 10년물 금리보다 높으면 초록. 순이익 기준이라 잉여현금흐름은 반영하지 않아요.</p>
+    <h3>퀀트 점수</h3><p>보유 종목 안에서의 백분위 순위(0~100). 가치: 이익수익률(1 ÷ P/E). 우량: 재무 건전성과 피오트로스키 순위의 평균(은행 50). 추세: 52주 전 가격 대비 4주 전 가격의 수익률(최근 한 달은 되돌림이 잦아 뺌). 안정: 연 변동성이 낮을수록 높음. 네 점수의 단순 평균이 총점. 백테스트(2008~2026, 분기 $10K 매수만, 배당 재투자): 지금 14종목은 S&P 500을 크게 이겼지만 오늘 아는 승자를 고른 결과라 실력으로 보기 어려워요. 2008년 당시 섹터별 1위 기업 14개로 같은 실험을 하면 S&P 500과 비슷했어요. 매수 규칙끼리는 목표 비중 채우기, 추세 상위, 가장 많이 빠진 종목 순으로 기간마다 승자가 바뀌었고, 가장 많이 빠진 종목을 사는 규칙은 수익은 괜찮았지만 하락폭이 가장 컸어요(−58%).</p>
+    <h3>재무 건전성</h3><p>알트만 Z 25점(1.8 이하 0, 3.0 이상 만점), 부채/자본 20점(1.5배 이상 0, 0.3배 이하 만점), 이자보상배율 15점(2배 이하 0, 20배 이상 만점), 유동비율 10점(0.5 이하 0, 1.5 이상 만점), 피오트로스키 15점(F ÷ 9 × 15), ROIC 15점(5% 이하 0, 20% 이상 만점). 은행은 비워요.</p>
+    <h3>적정가</h3><p>린치 적정가(내년 EPS × (성장률 + 배당률)), 그레이엄 적정가(EPS × (8.5 + 2 × 성장률) × 4.4 ÷ AAA 회사채 금리), 애널리스트 평균 목표가의 가운데 값. 지금 가격보다 15% 이상 높으면 초록.</p>
+    <h3>종목 리포트 체크</h3><p>가치: 적정가 20% 이상 쌈, 목표가까지 20% 이상, P/E가 5년 평균보다 낮음(없으면 P/FCF 25배 미만), 선행 P/E 17.7배 미만, PEG 1 미만, P/B 3 미만(은행 2). 미래 성장: 3년 이익 연 10%·20%, 3년 매출 연 6%·20%, 매수 의견, 그다음 해 이익 성장이 내년의 75% 이상. 과거 실적: 이익 연 10% 증가, 최근 1년이 평균보다 빠름, 잉여현금흐름이 순이익의 70% 이상(은행은 ROE가 5년 평균 이상), 이익률 개선, ROE 20%(은행 12%), ROIC 15%(은행 ROA 1%). 재무 건전성: 단기 자산이 단기 부채·총차입금보다 많음, 부채/자본 40% 미만, 현금이 빚보다 많음, 이자보상 5배, 영업현금흐름이 빚의 20% 이상(은행은 CET1 11%, 자기자본이 자산의 6%, 배당성향 60% 미만, 순이익 증가, ROE 12%, 자사주 매입). 배당: 배당률 1.5%·4%, 배당성향 90% 미만, 잉여현금흐름으로 감당, 5년·10년 연속 증가.</p>
+    <h3>리스크</h3><p>주간 수익률의 표준편차 × √52가 연 변동성(20% 미만 초록, 35% 이상 빨강). 베타는 S&P 500 주간 수익률에 대한 기울기(공분산 ÷ 분산). 최대낙폭은 52주 안에서 직전 고점 대비 가장 큰 하락, 고점 대비는 지금 가격 ÷ 52주 최고가 − 1. 마지막 점은 지금 가격이에요. 내 포트폴리오 전체의 VaR·리스크 기여도는 금액과 비중이 들어가서 개인 시트에만 있어요.</p>
+    <h3>매수 우선순위</h3><p>목표 대비 '모자람/충분'은 개인 시트에서 비공개로 계산해 글자만 가져와요. 금액·비중 숫자는 이 앱에 없어요.</p>
+    <h3>자료</h3><p>실적·전망: StockAnalysis.com, 금리: FRED, 시장 P/E: FactSet. 가격은 Google Finance(15~20분 지연). 참고용 계산이며 투자 자문이 아니에요.</p>
+  </details>
+</section>
+
+<footer>종목 성적표 v1.7 · 실적 자료는 분기마다(2·5·8·11월 20일) 갱신돼요<br>참고용 정보이며 투자 조언이 아니에요</footer>
+</div>
+
+<script>
+const SHEET='1mP8AxzshboBGkwrdUWOzBJtaHJd2HW9_e9v12g5WLQQ';
+const S={rows:[],live:[],facts:{},series:{},checks:{},hist:{},fx:null,ticker:null};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const f2=(v,d=2)=>v==null||isNaN(v)?'—':Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const money=(c,v)=>v==null||isNaN(v)?'—':c+f2(v,v>=1000?0:2);
+const money0=(c,v)=>v==null||isNaN(v)?'—':c+f2(v,0);
+const pct=v=>(v>0?'+':v<0?'−':'')+Math.abs(v)+'%';
+const gc=g=>g>=15?'ok':g<=-15?'bad':'';
+let _cb=0;
+function gviz(sheet,extra=''){
+  return new Promise((res,rej)=>{const name='__gv'+(++_cb),sc=document.createElement('script');
+    const to=setTimeout(()=>{cleanup();rej(new Error('timeout '+sheet));},20000);
+    function cleanup(){clearTimeout(to);delete window[name];sc.remove();}
+    window[name]=r=>{cleanup();r&&r.status!=='error'?res(r.table):rej(new Error('gviz '+sheet));};
+    sc.onerror=()=>{cleanup();rej(new Error('load '+sheet));};
+    sc.src=`https://docs.google.com/spreadsheets/d/${SHEET}/gviz/tq?tqx=out:json;responseHandler:${name}&sheet=${encodeURIComponent(sheet)}${extra}&t=${Date.now()}`;
+    document.head.appendChild(sc);});
+}
+const cell=c=>c?(c.v!=null?c.v:null):null;
+
+async function load(){
+  $('upd').textContent='불러오는 중…';
+  try{
+    const [p,d,h]=await Promise.all([gviz('Prices','&headers=1'),gviz('Data','&headers=1'),gviz('History','&headers=0')]);
+    const prices=p.rows.map(r=>({t:cell(r.c[0]),cur:cell(r.c[2]),price:cell(r.c[3]),status:cell(r.c[4])||''})).filter(x=>x.t);
+    S.fx=cell(p.rows[0].c[6]);
+    S.rows=[];S.facts={};S.series={};S.checks={};
+    d.rows.forEach(r=>{const t=cell(r.c[0]);if(!t)return;S.rows.push(JSON.parse(cell(r.c[1])));S.facts[t]=JSON.parse(cell(r.c[2]));S.series[t]=JSON.parse(cell(r.c[3]));S.checks[t]=JSON.parse(cell(r.c[4]));});
+    S.hist={};prices.forEach((x,i)=>{const pts=[];h.rows.forEach(r=>{const dc=r.c[2*i],vc=r.c[2*i+1];if(dc&&vc&&vc.v!=null&&dc.f)pts.push({d:new Date(dc.f.slice(0,10)+'T00:00:00Z'),v:vc.v});});S.hist[x.t]=pts;});
+    ['SPX','TSX'].forEach((k,j)=>{const i=prices.length+j,pts=[];h.rows.forEach(r=>{const dc=r.c[2*i],vc=r.c[2*i+1];if(dc&&vc&&vc.v!=null&&dc.f)pts.push({d:new Date(dc.f.slice(0,10)+'T00:00:00Z'),v:vc.v});});S.hist[k]=pts;});
+    S.px=new Map(prices.map(x=>[x.t,x.price]));
+    calcLive(prices);render();
+    const now=new Date();$('upd').textContent='가격 '+now.toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'})+' 기준 · Google Finance 지연 시세';
+  }catch(e){$('upd').innerHTML='<span class="err">불러오지 못했어요. 인터넷 연결을 확인하고 새로고침을 눌러 주세요.</span>';console.error(e);}
+}
+function calcLive(prices){
+  const by=new Map(prices.map(p=>[p.t,p]));
+  S.live=S.rows.map(r=>{const p=by.get(r.ticker);if(!p||p.price==null)return null;
+    const conv=(r.currency==='US$'&&p.cur==='CAD')?S.fx:1,cur=p.cur==='CAD'?'C$':'US$';
+    const mid=r.fair_mid*conv,gap=Math.round((mid/p.price-1)*100);
+    const list=String(r.green_list||'').split(' · ').filter(x=>x&&x!=='적정가');if(gap>=15)list.push('적정가');
+    const O=['성장 대비 가격','저PER·배당','국채 대비 수익','재무 건전성','적정가'];list.sort((a,b)=>O.indexOf(a)-O.indexOf(b));
+    const core=r.group==='핵심';let pr='사이드',rank=5;
+    if(core){if(p.status==='충분'){pr='이미 충분';rank=4}else if(gap>=15){pr='1순위';rank=1}else if(gap>-15){pr='계획대로';rank=2}else{pr='서두르지 않기';rank=3}}
+    return {...r,cur,price:p.price,mid:Math.round(mid),lo:Math.round(r.fair_low*conv),hi:Math.round(r.fair_high*conv),tgt:r.analyst_target*conv,gap,greens:list.length,list:list.join(' · '),status:p.status,pr,rank};
+  }).filter(Boolean);
+}
+function goReport(t){S.ticker=t;renderReport();$('report').scrollIntoView({behavior:'smooth'});}
+function tkCell(r,name){return `<td class="tk" onclick="goReport('${r.ticker}')">${esc(r.ticker)}${name?`<span class="nm">${esc(r.name)}</span>`:''}</td>`;}
+
+function render(){
+  const L=S.live;
+  const top=L.filter(r=>r.rank===1).sort((a,b)=>b.gap-a.gap);
+  const mx=Math.max(...L.map(r=>r.greens));const lead=L.filter(r=>r.greens===mx);
+  $('lead').innerHTML=`지금 가격으로 보면, 목표 비중보다 모자라면서 적정가보다 싼 종목은 ${top.length?top.map(r=>`<b>${r.ticker}</b> (<span class="ok">${pct(r.gap)}</span>)`).join(', '):'지금은 없어'}예요. 다섯 관점 중 초록불이 가장 많은 종목은 ${lead.map(r=>'<b>'+r.ticker+'</b>').join(', ')} (각 ${mx}개)예요.`;
+  $('tNext').innerHTML=L.filter(r=>r.rank<=4).sort((a,b)=>a.rank-b.rank||b.gap-a.gap).map(r=>`<tr>${tkCell(r)}<td><span class="pill ${r.rank===1?'ok':r.rank===3?'bad':''}">${r.pr}</span></td><td>${r.status==='모자람'?'목표보다 모자람':'목표만큼 있음'}</td><td class="n ${gc(r.gap)}">${pct(r.gap)}</td></tr>`).join('');
+  $('tSum').innerHTML=[...L].sort((a,b)=>b.greens-a.greens||b.gap-a.gap).map(r=>{const cls=r.greens>=3?'ok':r.greens===0?'bad':'';const dots=Array.from({length:5},(_,i)=>`<span class="dot${i<r.greens?' on':''}"></span>`).join('');
+    const h=r.health;return `<tr>${tkCell(r)}<td class="n ${cls}">${dots} ${r.greens}</td><td>${esc(r.list)||'—'}</td><td class="n ${gc(r.gap)}">${pct(r.gap)}</td><td class="n ${h==null?'':h>=80?'ok':h<50?'bad':''}">${h==null?'해당 없음':h}</td></tr>`;}).join('');
+  $('tFair').innerHTML=[...L].sort((a,b)=>b.gap-a.gap).map(r=>`<tr>${tkCell(r)}<td class="n">${money(r.cur,r.price)}</td><td class="n ${gc(r.gap)}">${money0(r.cur,r.mid)}</td><td class="n">${money0(r.cur,r.lo)}~${f2(r.hi,0)}</td><td class="n">${money(r.cur,r.tgt)}</td></tr>`).join('');
+  $('tLens').innerHTML=S.rows.map(r=>`<tr>${tkCell(r)}<td class="n ${r.lynch_ratio>=1.5?'ok':''}">${f2(r.lynch_ratio)}</td><td class="n ${r.piotroski>=7?'ok':''}">${r.piotroski}</td><td class="n ${r.neff_ratio>=1.5&&r.neff_conditions===3?'ok':''}">${f2(r.neff_ratio)}</td><td class="n">${r.neff_conditions}</td><td class="n ${r.earnings_yield>4.88?'ok':''}">${f2(r.earnings_yield)}%</td></tr>`).join('');
+  $('cGap').innerHTML=hbars([...L].sort((a,b)=>b.gap-a.gap).map(r=>({l:r.ticker,v:r.gap,c:r.gap>=15?'var(--ok)':r.gap<=-15?'var(--bad)':'var(--bar)'})),{min:-70,max:80,fmt:pct,left:56});
+  $('cHealth').innerHTML=hbars(S.rows.filter(r=>r.health!=null).sort((a,b)=>b.health-a.health).map(r=>({l:r.ticker,v:r.health,c:r.health>=80?'var(--ok)':r.health<50?'var(--bad)':'var(--bar)'})),{min:0,max:100,fmt:v=>v+'점',left:56,ref:80});
+  renderRisk();
+  renderQuant();
+  renderReport();
+}
+
+
+function rankPct(arr){const v=arr.filter(x=>x!=null).sort((a,b)=>a-b),n=v.length;
+  return arr.map(x=>{if(x==null)return null;let lo=v.indexOf(x),hi=v.lastIndexOf(x);return Math.round(((lo+hi)/2+1)/n*100);});}
+function momOf(k){const p=riskSeries(k);if(p.length<30)return null;const i=Math.max(0,p.length-5);return p[i].v/p[0].v-1;}
+function quantScores(){
+  const R=S.rows,risk=R.map(r=>riskOf(r.ticker));
+  const V=rankPct(R.map(r=>r.earnings_yield));
+  const h=rankPct(R.map(r=>r.health)),pi=rankPct(R.map(r=>r.health==null?null:r.piotroski));
+  const Q=R.map((r,i)=>h[i]==null?50:Math.round((h[i]+pi[i])/2));
+  const M=rankPct(R.map(r=>momOf(r.ticker))),St=rankPct(risk.map(x=>x?-x.vol:null));
+  return R.map((r,i)=>{const parts=[V[i],Q[i],M[i],St[i]].filter(x=>x!=null);
+    return {t:r.ticker,name:r.name,bank:r.health==null,v:V[i],q:Q[i],m:M[i],s:St[i],total:parts.length?Math.round(parts.reduce((a,b)=>a+b,0)/parts.length):null};}).filter(x=>x.total!=null).sort((a,b)=>b.total-a.total);
+}
+function renderQuant(){
+  const Z=quantScores();if(!Z.length){$('cQuant').innerHTML='<p class="note">자료가 없어요</p>';return;}
+  const qc=v=>v==null?'':v>=60?'ok':v<40?'bad':'';
+  $('cQuant').innerHTML=hbars(Z.map(x=>({l:x.t,v:x.total,c:x.total>=60?'var(--ok)':x.total<40?'var(--bad)':'var(--bar)'})),{min:0,max:100,fmt:v=>v+'점',left:56,ref:50});
+  $('tQuant').innerHTML=Z.map(x=>`<tr><td class="tk" onclick="goReport('${x.t}')">${esc(x.t)}</td><td class="n ${qc(x.total)}"><b>${x.total}</b></td><td class="n ${qc(x.v)}">${x.v??'—'}</td><td class="n ${qc(x.q)}">${x.q??'—'}${x.bank?'*':''}</td><td class="n ${qc(x.m)}">${x.m??'—'}</td><td class="n ${qc(x.s)}">${x.s??'—'}</td></tr>`).join('')+(Z.some(x=>x.bank)?'<tr><td colspan="6" class="note">* 은행은 건전성 점수가 없어서 우량을 중간값 50으로 둬요.</td></tr>':'');
+}
+const VOL_OK=20,VOL_BAD=35;
+const dkey=d=>d.toISOString().slice(0,10);
+function riskSeries(k){const p=(S.hist[k]||[]).slice(),lp=S.px&&S.px.get(k);
+  if(lp!=null&&p.length&&Date.now()-p[p.length-1].d>3*864e5)p.push({d:new Date(),v:lp});return p;}
+function riskOf(k){
+  const p=riskSeries(k);if(p.length<10)return null;
+  const rets=[],byDate=new Map();
+  for(let i=1;i<p.length;i++){const r=p[i].v/p[i-1].v-1;rets.push(r);byDate.set(dkey(p[i].d),r);}
+  const mean=a=>a.reduce((s,x)=>s+x,0)/a.length,sd=a=>{const m=mean(a);return Math.sqrt(a.reduce((s,x)=>s+(x-m)**2,0)/(a.length-1));};
+  const spx=S.hist.SPX||[],xs=[],ys=[];
+  for(let i=1;i<spx.length;i++){const r=byDate.get(dkey(spx[i].d));if(r!=null){xs.push(spx[i].v/spx[i-1].v-1);ys.push(r);}}
+  let beta=null;if(xs.length>=10){const mx=mean(xs),my=mean(ys);let c=0,v=0;xs.forEach((x,i)=>{c+=(x-mx)*(ys[i]-my);v+=(x-mx)**2;});beta=v?c/v:null;}
+  let peak=-Infinity,mdd=0;p.forEach(x=>{peak=Math.max(peak,x.v);mdd=Math.min(mdd,x.v/peak-1);});
+  return {vol:sd(rets)*Math.sqrt(52)*100,beta,mdd:mdd*100,cur:(p[p.length-1].v/peak-1)*100};
+}
+function renderRisk(){
+  const vc=v=>v<VOL_OK?'ok':v>=VOL_BAD?'bad':'';
+  const st=S.rows.map(r=>({t:r.ticker,name:r.name,...(riskOf(r.ticker)||{})})).filter(x=>x.vol!=null).sort((a,b)=>a.vol-b.vol);
+  const idx=[['SPX','S&P 500'],['TSX','S&P/TSX']].map(([k,n])=>({t:n,...(riskOf(k)||{})})).filter(x=>x.vol!=null);
+  if(!st.length){$('cRisk').innerHTML='<p class="note">주가 기록이 없어요</p>';$('tRisk').innerHTML='';return;}
+  $('cRisk').innerHTML='<h4 class="note" style="margin:0 0 4px">연 변동성 (낮을수록 덜 흔들림)</h4>'+hbars(st.map(x=>({l:x.t,v:Math.round(x.vol),c:x.vol<VOL_OK?'var(--ok)':x.vol>=VOL_BAD?'var(--bad)':'var(--bar)'})),{min:0,fmt:v=>v+'%',left:56,ref:idx.length?Math.round(idx[0].vol):null})+(idx.length?`<p class="note">점선은 S&P 500 (${Math.round(idx[0].vol)}%)</p>`:'');
+  const f1=v=>v==null?'—':(v<0?'−':'')+Math.abs(v).toFixed(1)+'%';
+  const row=(x,link)=>`<tr>${link?`<td class="tk" onclick="goReport('${x.t}')">${esc(x.t)}</td>`:`<td>${esc(x.t)}</td>`}<td class="n ${vc(x.vol)}">${x.vol.toFixed(0)}%</td><td class="n ${x.beta!=null&&x.beta>=1.3?'bad':x.beta!=null&&x.beta<0.7?'ok':''}">${x.beta==null?'—':f2(x.beta)}</td><td class="n ${x.mdd<=-30?'bad':''}">${f1(x.mdd)}</td><td class="n ${x.cur<=-20?'bad':''}">${f1(x.cur)}</td></tr>`;
+  $('tRisk').innerHTML=idx.map(x=>row(x,false)).join('')+st.map(x=>row(x,true)).join('');
+}
+
+function bp(x,y,w,h,d){const r=Math.max(0,Math.min(1.5,w/2,h/2));
+  if(d==='up')return `M${x},${y+h}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h}Z`;
+  if(d==='down')return `M${x},${y}V${y+h-r}Q${x},${y+h} ${x+r},${y+h}H${x+w-r}Q${x+w},${y+h} ${x+w},${y+h-r}V${y}Z`;
+  if(d==='left')return `M${x+w},${y}H${x+r}Q${x},${y} ${x},${y+r}V${y+h-r}Q${x},${y+h} ${x+r},${y+h}H${x+w}Z`;
+  return `M${x},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h-r}Q${x+w},${y+h} ${x+w-r},${y+h}H${x}Z`;}
+function hbars(items,o){
+  const W=360,rh=26,tw=x=>[...String(x)].reduce((t,c)=>t+(c.charCodeAt(0)>0x1100?15:10),0),l=Math.max(...items.map(d=>tw(d.l)))+16+(Math.min(...items.map(d=>d.v))<0?Math.max(...items.filter(d=>d.v<0).map(d=>tw(o.fmt(d.v))))+8:0),r=50,H=items.length*rh+6,min=o.min||0,max=o.max!=null?o.max:Math.max(...items.map(d=>d.v));
+  const x=v=>l+(Math.max(min,Math.min(max,v))-min)/(max-min)*(W-l-r),z=x(Math.max(min,0));
+  let s=`<svg class="bc" viewBox="0 0 ${W} ${H}" width="100%" role="img">`;
+  if(min<0)s+=`<line x1="${z}" x2="${z}" y1="0" y2="${H}" stroke="var(--line)"/>`;
+  if(o.ref!=null)s+=`<line x1="${x(o.ref)}" x2="${x(o.ref)}" y1="0" y2="${H}" stroke="var(--mut)" stroke-dasharray="3 3"/>`;
+  items.forEach((d,i)=>{const y=3+i*rh,xv=x(d.v),a=Math.min(z,xv),w=Math.max(1,Math.abs(xv-z));
+    s+=`<text class="lbl" x="0" y="${y+rh/2}" dy=".35em">${esc(d.l)}</text><path d="${bp(a,y+6,w,14,d.v<0?'left':'right')}" fill="${d.c||'var(--bar)'}"/>`;
+    s+=`<text x="${d.v>=0?xv+4:xv-4}" y="${y+rh/2}" dy=".35em" text-anchor="${d.v>=0?'start':'end'}">${esc(o.fmt(d.v))}</text>`;});
+  return s+'</svg>';
+}
+function cols(rows,o){
+  const per=[...new Set(rows.map(r=>r[2]))],names=[...new Set(rows.map(r=>r[1]))];
+  const W=340,H=180,b=24,t=20,mx=Math.max(...rows.map(r=>r[3]),0)*1.1||1,mn=Math.min(0,...rows.map(r=>r[3]));
+  const bw=(W-8)/per.length,sw=16,gw=sw*names.length,y=v=>t+(mx-v)/(mx-mn)*(H-b-t);
+  let s=(names.length>1?`<div class="lg">${names.map((n,i)=>`<span><i style="background:${o.c[i]}"></i>${esc(n)}</span>`).join('')}</div>`:'')+`<svg class="bc" viewBox="0 0 ${W} ${H}" width="100%" role="img"><line x1="0" x2="${W}" y1="${y(0)}" y2="${y(0)}" stroke="var(--line)"/>`;
+  rows.forEach(r=>{const pi=per.indexOf(r[2]),ni=names.indexOf(r[1]),x0=4+pi*bw+(bw-gw)/2+ni*sw,yv=y(r[3]),y0=y(0);
+    s+=`<path d="${bp(x0,Math.min(yv,y0),sw-2,Math.max(1,Math.abs(y0-yv)),r[3]<0?'down':'up')}" fill="${o.c[ni]}" opacity="${o.dim&&o.dim(r)?0.5:1}"/>`;
+    if(ni===0)s+=`<text x="${x0+(sw-2)/2}" y="${yv-8}" text-anchor="middle">${esc(o.fmt(r[3]))}</text>`;});
+  per.forEach((p,i)=>s+=`<text x="${4+i*bw+bw/2}" y="${H-5}" text-anchor="middle">${esc(p)}</text>`);
+  return s+'</svg>';
+}
+function radar(sc){
+  const W=320,H=250,cx=160,cy=125,R=88,n=sc.length,a=i=>-Math.PI/2+i*2*Math.PI/n,pt=(i,v)=>[cx+Math.cos(a(i))*R*v/6,cy+Math.sin(a(i))*R*v/6];
+  const tot=sc.reduce((s,x)=>s+x.v,0),col=tot>=20?'var(--ok)':tot<12?'var(--bad)':'var(--warn)';
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:360px" role="img">`;
+  [2,4,6].forEach(k=>s+=`<polygon points="${sc.map((_,i)=>pt(i,k).join(',')).join(' ')}" fill="none" stroke="var(--grid)"/>`);
+  sc.forEach((_,i)=>{const p=pt(i,6);s+=`<line x1="${cx}" y1="${cy}" x2="${p[0]}" y2="${p[1]}" stroke="var(--grid)"/>`;});
+  s+=`<polygon points="${sc.map((x,i)=>pt(i,Math.max(.3,x.v)).join(',')).join(' ')}" fill="${col}" fill-opacity=".28" stroke="${col}" stroke-width="2"/>`;
+  sc.forEach((x,i)=>{const p=pt(i,7.3);s+=`<text class="lbl" x="${p[0]}" y="${p[1]}" dy=".35em" text-anchor="${Math.abs(p[0]-cx)<5?'middle':p[0]>cx?'start':'end'}">${esc(x.name)} <tspan font-weight="700">${x.v}</tspan></text>`;});
+  return s+'</svg>';
+}
+function priceChart(t,L){
+  const pts=S.hist[t]||[];if(pts.length<2)return '<p class="note">주가 기록이 없어요</p>';
+  const W=340,H=200,m={l:40,r:6,t:8,b:20},fair=L?L.mid:null,cur=L?L.cur:'';
+  const xs=pts.map(p=>+p.d),x0=Math.min(...xs),x1=Math.max(...xs),lo=Math.min(...pts.map(p=>p.v))*0.92,hi=Math.max(Math.max(...pts.map(p=>p.v)),fair||0)*1.05;
+  const X=v=>m.l+(v-x0)/(x1-x0)*(W-m.l-m.r),Y=v=>m.t+(hi-v)/(hi-lo)*(H-m.t-m.b);
+  const chg=Math.round((pts[pts.length-1].v/pts[0].v-1)*1000)/10;
+  let s=`<div class="lg"><span><i style="background:var(--acc)"></i>주가 (1년 ${chg>0?'+':''}${chg}%)</span>${fair?`<span><i style="background:var(--ok)"></i>적정가 ${money0(cur,fair)}</span>`:''}</div><svg viewBox="0 0 ${W} ${H}" width="100%" role="img">`;
+  for(let k=0;k<=3;k++){const v=lo+(hi-lo)*k/3;s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)"/><text x="${m.l-4}" y="${Y(v)}" dy=".35em" text-anchor="end">${f2(v,0)}</text>`;}
+  [0.25,0.5,0.75].forEach(f=>{const d=new Date(x0+(x1-x0)*f);s+=`<text x="${X(+d)}" y="${H-5}" text-anchor="middle">${String(d.getUTCFullYear()).slice(2)}.${d.getUTCMonth()+1}</text>`;});
+  if(fair)s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(fair)}" y2="${Y(fair)}" stroke="var(--ok)" stroke-dasharray="5 4" stroke-width="1.5"/>`;
+  s+=`<path d="${pts.map((p,i)=>(i?'L':'M')+X(+p.d).toFixed(1)+','+Y(p.v).toFixed(1)).join('')}" fill="none" stroke="var(--acc)" stroke-width="2"/>`;
+  return s+'</svg>';
+}
+function fval(F,k){const r=F.get(k);if(!r)return null;const[,label,v,txt,u]=r;if(txt!=null)return txt;if(v==null)return '—';
+  if(u==='%')return f2(v,1).replace(/\.0$/,'')+'%';const m=(u||'').match(/^(US\$|C\$)( 십억| 백만)?$/);
+  if(m)return m[2]===' 십억'?m[1]+f2(v,1).replace(/\.0$/,'')+'B':m[2]===' 백만'?m[1]+f2(v,1)+'M':m[1]+f2(v);
+  if(u==='배')return f2(v,1)+'배';if(u==='년'||u==='명')return f2(v,0)+u;if(u==='/9')return v+'/9';return f2(v,2).replace(/\.?0+$/,'')+(u?' '+u:'');}
+function kv(F,keys){const rows=keys.filter(k=>F.has(k)).map(k=>`<dt>${esc(F.get(k)[1])}</dt><dd>${esc(fval(F,k))}</dd>`).join('');return rows?`<dl class="kv">${rows}</dl>`:'';}
+
+function ret1y(k){const p=S.hist[k]||[];return p.length>1?Math.round((p[p.length-1].v/p[0].v-1)*100):null;}
+function tgtRange(lo,hi,avg,price,cur){const mn=Math.min(lo,price||lo)*0.95,mx=Math.max(hi,price||hi)*1.05,W=320,x=v=>10+(v-mn)/(mx-mn)*(W-20),m=v=>cur+f2(v,0),cl=v=>Math.min(W-60,Math.max(60,v));
+  return `<svg viewBox="0 0 ${W} 82" width="100%" role="img" aria-label="애널리스트 목표가 범위와 지금 가격"><line x1="${x(lo)}" x2="${x(hi)}" y1="36" y2="36" stroke="var(--acc)" stroke-width="6" stroke-linecap="round" opacity=".35"/>`+
+  (avg!=null?`<line x1="${x(avg)}" x2="${x(avg)}" y1="27" y2="45" stroke="var(--acc)" stroke-width="2"/><text x="${cl(x(avg))}" y="17" text-anchor="middle" fill="currentColor">평균 ${m(avg)}</text>`:'')+
+  (price?`<circle cx="${x(price)}" cy="36" r="6" fill="currentColor"/>`:'')+
+  `<text x="${Math.min(x(lo),W/2-6)}" y="70" fill="currentColor">최저 ${m(lo)}</text><text x="${Math.max(x(hi),W/2+6)}" y="70" text-anchor="end" fill="currentColor">최고 ${m(hi)}</text></svg>`;}
+function pnlTable(rows,cur){const R=(rows.find(r=>r[2]==='매출')||[])[3];if(!R)return '';
+  return '<table class="pnl">'+rows.map(r=>{const b=['매출','영업이익','순이익'].includes(r[2])?' style="font-weight:600"':'';return `<tr${b}><td>${esc(r[2])}</td><td class="n">${r[3]<0?'−':''}${cur}${f2(Math.abs(r[3]),1)}B</td><td class="n ${r[3]<0?'':'ok'}">${f2(Math.abs(r[3])/R*100,0)}%</td></tr>`;}).join('')+'</table>';}
+function renderReport(){
+  const el=$('rep');const tick=S.rows.map(r=>r.ticker);if(!tick.length){el.textContent='—';return;}
+  if(!S.ticker||!tick.includes(S.ticker))S.ticker=tick.includes('NVDA')?'NVDA':tick[0];
+  const t=S.ticker,F=new Map((S.facts[t]||[]).map(r=>[r[0],r])),ser=S.series[t]||[],has=c=>ser.some(r=>r[0]===c),get=c=>ser.filter(r=>r[0]===c);
+  const tx=k=>F.has(k)?F.get(k)[3]:null,cur=tx('cur')||'US$',fcur=tx('fin_cur')||cur,L=S.live.find(r=>r.ticker===t);
+  const C=['var(--acc)','var(--ok)','var(--warn)'];
+  let ck=(S.checks[t]||[]).map(c=>({sec:c[0],label:c[1],pass:!!c[2],detail:c[3]}));
+  if(L)ck=ck.map(c=>{if(c.sec!=='가치')return c;if(c.label.startsWith('적정가보다 20%'))return{...c,pass:L.gap>=20,detail:'지금 가격 기준 적정가 괴리 '+pct(L.gap),live:1};
+    if(c.label.startsWith('애널리스트 목표가보다 20%')){const up=Math.round((L.tgt/L.price-1)*100);return{...c,pass:up>=20,detail:'지금 가격 기준 목표가까지 '+pct(up),live:1};}return c;});
+  const SECS=['가치','미래 성장','과거 실적','재무 건전성','배당'],sc=SECS.map(s=>({name:s,v:ck.filter(c=>c.sec===s&&c.pass).length}));
+  let h=`<div class="rhead"><select id="sel" aria-label="종목 선택">${S.rows.map(r=>`<option value="${r.ticker}"${r.ticker===t?' selected':''}>${r.ticker} · ${esc(r.name)}</option>`).join('')}</select>
+    <div><b>${esc(tx('name')||t)}</b><span class="nm">${esc(tx('industry')||'')} · 자료 ${esc((F.get('name')||[])[5]||'')}</span></div></div>`;
+  if(L)h+=`<p class="live">지금 <b>${money(L.cur,L.price)}</b> · 적정가 ${money0(L.cur,L.mid)} · <b class="${gc(L.gap)}">괴리 ${pct(L.gap)}</b></p>`;
+  if(tx('note'))h+=`<p class="note">참고: ${esc(tx('note'))}</p>`;
+  h+=`<div class="grid"><div class="box"><h3>한눈에 보기 <span>${sc.reduce((s,x)=>s+x.v,0)}/30</span></h3>${radar(sc)}</div><div class="box"><h3>핵심 숫자</h3>${kv(F,['market_cap','pe','fwd_pe','yield','chg_52w','target','rating','employees'])}</div></div>`;
+  if(tx('desc'))h+=`<div class="box" style="margin-top:12px"><h3>회사 개요</h3><p style="margin:0 0 8px">${esc(tx('desc'))}</p>${kv(F,['founded','hq','ceo'])}</div>`;
+  h+=`<div class="box" style="margin-top:12px"><h3>1년 주가와 적정가</h3>${priceChart(t,L)}${(()=>{const a=[[t,ret1y(t)],['S&P 500',ret1y('SPX')],['TSX',ret1y('TSX')]].filter(x=>x[1]!=null);return a.length?'<p class="note">1년 수익률 (주간 종가): '+a.map(x=>`<b class="${x[1]>=0?'ok':'bad'}">${esc(x[0])} ${x[1]>0?'+':''}${x[1]}%</b>`).join(' · ')+'</p>':'';})()}${F.has('target_low')&&F.has('target_high')?'<h4>애널리스트 목표가 범위 (● 지금 가격)</h4>'+tgtRange(F.get('target_low')[2],F.get('target_high')[2],F.has('target')?F.get('target')[2]:null,L&&L.cur===cur?L.price:(F.has('price_ref')?F.get('price_ref')[2]:null),cur):''}</div><div class="grid">`;
+  SECS.forEach((s,i)=>{h+=`<div class="box"><h3><span>${s}</span><span class="${sc[i].v>=5?'ok':sc[i].v<=2?'bad':''}">${sc[i].v} / 6</span></h3><ul class="ck">`+
+    ck.filter(c=>c.sec===s).map(c=>`<li><span class="${c.pass?'ok':'bad'}">${c.pass?'✓':'✗'}</span><span>${esc(c.label)}${c.live?' · 실시간':''}<span class="d">${esc(c.detail)}</span></span></li>`).join('')+'</ul>';
+    if(s==='가치'){if(has('pe_hist'))h+=`<h4>P/E 추이 (배)</h4>`+cols(get('pe_hist'),{c:[C[0]],fmt:v=>f2(v,1),dim:r=>r[2]!=='지금'});
+      else if(has('peers_pe'))h+=`<h4>P/E 동종 기업 비교 (배)</h4>`+hbars(get('peers_pe').map(r=>({l:r[2],v:r[3],c:r[2]===t?'var(--ok)':null})),{fmt:v=>f2(v,1)+'배',left:56});
+      if(has('pb_hist'))h+=`<h4>P/B 추이 (배)</h4>`+cols(get('pb_hist'),{c:[C[1]],fmt:v=>f2(v,2),dim:r=>r[2]!=='지금'});}
+    if(s==='미래 성장'){if(has('forecast')){h+=`<h4>매출 (${fcur} 십억)</h4>`+cols(get('forecast'),{c:[C[0]],fmt:v=>f2(v,v<10?1:0),dim:r=>r[2].includes('전망')});if(has('eps'))h+=`<h4>EPS (${fcur})</h4>`+cols(get('eps'),{c:[C[1]],fmt:v=>f2(v),dim:r=>r[2].includes('전망')});if(tx('forecast_note'))h+=`<p class="note">${esc(tx('forecast_note'))}</p>`;}else h+='<p class="note">연도별 전망 자료가 없어 3년 성장 전망만 썼어요.</p>';}
+    if(s==='과거 실적'){if(has('history'))h+=`<h4>매출 · 순이익 · 잉여현금흐름 (${fcur} 십억)</h4>`+cols(get('history'),{c:C,fmt:v=>f2(v,Math.abs(v)<10?1:0)});h+=`<h4>자본 효율과 이익률</h4>`+kv(F,['roe','roic','roa','roce','gm','om','nm']);if(has('pnl'))h+=`<h4>매출이 어디로 가나 (최근 12개월)</h4>`+pnlTable(get('pnl'),fcur);}
+    if(s==='재무 건전성'){if(has('liquidity'))h+=`<h4>단기 지급 능력 (${cur} 십억)</h4>`+hbars(get('liquidity').map((r,j)=>({l:r[2],v:r[3],c:j?'var(--bad)':'var(--ok)'})),{fmt:v=>f2(v,v<10?1:0)+'B',left:74});
+      if(has('debt_cash'))h+=`<h4>현금 · 빚 · 자기자본 (${cur} 십억)</h4>`+hbars(get('debt_cash').map(r=>({l:r[2],v:r[3],c:r[2]==='총차입금'?'var(--bad)':r[2]==='현금'?'var(--ok)':null})),{fmt:v=>f2(v,v<10?1:0)+'B',left:74});
+      if(has('de_hist'))h+=`<h4>부채/자본 추이 (%)</h4>`+cols(get('de_hist'),{c:[C[2]],fmt:v=>f2(v,0),dim:r=>r[2]!=='지금'});
+      h+=kv(F,['cet1','current_ratio','de','int_cov','altman','fscore']);}
+    if(s==='배당'){h+=kv(F,['dps','yield','payout','div_years','ex_div','share_chg']);if(get('div_hist').length>1){h+=`<h4>연간 주당 배당 추이</h4>`+cols(get('div_hist'),{c:[C[1]],fmt:v=>f2(v,v<1?3:2)});if(tx('div_note'))h+=`<p class="note">${esc(tx('div_note'))}</p>`;}if(has('cash_use'))h+=`<h4>최근 12개월 현금 쓰임 (${cur} 십억)</h4>`+hbars(get('cash_use').map(r=>({l:r[2],v:Math.max(0,r[3]),c:r[2]==='잉여현금흐름'?(r[3]<0?'var(--bad)':'var(--ok)'):null})),{fmt:v=>f2(v,1)+'B',left:84})+'<p class="note">일부 금액은 수익률 × 시가총액으로 어림한 값이에요.</p>';}
+    h+='</div>';});
+  if(has('segments')||has('geo')){h+=`<div class="box"><h3>어디서 돈을 버나 (${fcur} 십억)</h3>`;if(has('segments'))h+='<h4>사업부별</h4>'+hbars(get('segments').map(r=>({l:r[2],v:r[3]})),{fmt:v=>f2(v,0)+'B',left:150});if(has('geo'))h+='<h4>지역별</h4>'+hbars(get('geo').map(r=>({l:r[2],v:r[3]})),{fmt:v=>f2(v,0)+'B',left:56});h+='</div>';}
+  h+=`<div class="box"><h3>${F.has('ceo_own')?'경영진과 주주':'주주 구성'}</h3>${kv(F,['ceo_own','ceo_pay','mgmt_tenure','board_tenure'])}`;
+  if(has('ownership'))h+='<h4>지분 구성 (%)</h4>'+hbars(get('ownership').map(r=>({l:r[2],v:r[3]})),{min:0,max:100,fmt:v=>f2(v,1)+'%',left:70});
+  if(has('holders'))h+='<h4>큰 주주 (억 주)</h4>'+hbars(get('holders').map(r=>({l:r[2],v:r[3]})),{fmt:v=>f2(v,1)+'억',left:100});
+  if(tx('insider_note'))h+=`<p class="note">${esc(tx('insider_note'))}</p>`;
+  h+='</div></div>';
+  el.innerHTML=h;$('sel').onchange=e=>{S.ticker=e.target.value;renderReport();};
+}
+$('reload').onclick=load;
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)load();});
+load();
+</script>
+</body>
+</html>
